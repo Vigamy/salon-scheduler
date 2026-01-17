@@ -7,7 +7,7 @@ This is a Next.js application for managing salon appointments. It allows stylist
 The application is designed from the perspective of a salon stylist or owner. Here's a walkthrough of the main features:
 
 ### 1. Authentication
-- **Login**: Start at the [login page](/login) to access your dashboard. Currently, you can click "Sign In" to proceed to the dashboard.
+- **Login**: The login page is currently a placeholder for demonstration purposes. You do not need to enter an email or password. Simply click the "View Dashboard" button to access the application.
 
 ### 2. Dashboard
 - **Overview**: After logging in, you'll land on the main [dashboard](/dashboard).

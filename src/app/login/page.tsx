@@ -19,9 +19,9 @@ export default function LoginPage() {
           <div className="mb-4 flex justify-center">
             <Logo className="h-12 w-12 text-primary" />
           </div>
-          <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
+          <CardTitle className="text-2xl font-headline">Salon Scheduler Demo</CardTitle>
           <CardDescription>
-            Enter your credentials to access your account.
+            Authentication is not yet implemented. Click the button below to explore the app.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -33,32 +33,22 @@ export default function LoginPage() {
                 type="email"
                 placeholder="m@example.com"
                 required
+                disabled
               />
             </div>
             <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <Link
-                  href="#"
-                  className="ml-auto inline-block text-sm underline"
-                >
-                  Forgot your password?
-                </Link>
-              </div>
-              <Input id="password" type="password" required />
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" required disabled />
             </div>
             <Button type="submit" className="w-full" asChild>
-              <Link href="/dashboard">Sign In</Link>
+              <Link href="/dashboard">View Dashboard</Link>
             </Button>
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" disabled>
               Sign in with Google
             </Button>
           </div>
-          <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{' '}
-            <Link href="#" className="underline">
-              Sign up
-            </Link>
+          <div className="mt-4 text-center text-sm text-muted-foreground">
+            No account needed for this demo.
           </div>
         </CardContent>
       </Card>
