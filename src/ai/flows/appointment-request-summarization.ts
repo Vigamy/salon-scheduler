@@ -1,24 +1,24 @@
 'use server';
 /**
- * @fileOverview Summarizes appointment requests for hairdressers.
+ * @fileOverview Resume solicitações de agendamento para cabeleireiros.
  *
- * - summarizeAppointmentRequest - A function that summarizes appointment requests.
- * - SummarizeAppointmentRequestInput - The input type for the summarizeAppointmentRequest function.
- * - SummarizeAppointmentRequestOutput - The return type for the summarizeAppointmentRequest function.
+ * - summarizeAppointmentRequest - Uma função que resume solicitações de agendamento.
+ * - SummarizeAppointmentRequestInput - O tipo de entrada para a função summarizeAppointmentRequest.
+ * - SummarizeAppointmentRequestOutput - O tipo de retorno para a função summarizeAppointmentRequest.
  */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const SummarizeAppointmentRequestInputSchema = z.object({
-  service: z.string().describe('The requested service.'),
-  preferredTime: z.string().describe('The preferred appointment time.'),
-  additionalDetails: z.string().describe('Any additional details provided by the client.'),
+  service: z.string().describe('O serviço solicitado.'),
+  preferredTime: z.string().describe('O horário de agendamento preferido.'),
+  additionalDetails: z.string().describe('Quaisquer detalhes adicionais fornecidos pelo cliente.'),
 });
 export type SummarizeAppointmentRequestInput = z.infer<typeof SummarizeAppointmentRequestInputSchema>;
 
 const SummarizeAppointmentRequestOutputSchema = z.object({
-  summary: z.string().describe('A concise summary of the appointment request.'),
+  summary: z.string().describe('Um resumo conciso da solicitação de agendamento.'),
 });
 export type SummarizeAppointmentRequestOutput = z.infer<typeof SummarizeAppointmentRequestOutputSchema>;
 
@@ -30,7 +30,7 @@ const prompt = ai.definePrompt({
   name: 'summarizeAppointmentRequestPrompt',
   input: {schema: SummarizeAppointmentRequestInputSchema},
   output: {schema: SummarizeAppointmentRequestOutputSchema},
-  prompt: `You are an assistant helping hairdressers quickly understand appointment requests.\n\nSummarize the following appointment request in a concise and informative way:\n\nService: {{{service}}}\nPreferred Time: {{{preferredTime}}}\nAdditional Details: {{{additionalDetails}}}\n\nSummary:`,
+  prompt: `Você é um assistente que ajuda cabeleireiros a entender rapidamente as solicitações de agendamento.\n\nResuma a seguinte solicitação de agendamento de forma concisa e informativa:\n\nServiço: {{{service}}}\nHorário Preferido: {{{preferredTime}}}\nDetalhes Adicionais: {{{additionalDetails}}}\n\nResumo:`,
 });
 
 const summarizeAppointmentRequestFlow = ai.defineFlow(

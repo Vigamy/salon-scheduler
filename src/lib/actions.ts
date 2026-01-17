@@ -13,6 +13,6 @@ export async function generateSummaryAction(
     return summary;
   } catch (error) {
     console.error('Error summarizing appointment request:', error);
-    return 'Failed to generate summary. Please try again.';
+    return 'Falha ao gerar o resumo. Por favor, tente novamente.';
   }
 }

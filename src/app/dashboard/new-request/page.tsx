@@ -4,12 +4,12 @@ import AppointmentForm from '@/components/dashboard/appointment-form';
 export default function NewRequestPage() {
   return (
     <div className="flex flex-col gap-6">
-       <h1 className="text-2xl font-bold font-headline tracking-tight">Request an Appointment</h1>
+       <h1 className="text-2xl font-bold font-headline tracking-tight">Solicitar um Agendamento</h1>
       <Card>
         <CardHeader>
-          <CardTitle>Appointment Details</CardTitle>
+          <CardTitle>Detalhes do Agendamento</CardTitle>
           <CardDescription>
-            Fill out the form below to request a new appointment. We will confirm your booking shortly.
+            Preencha o formulário abaixo para solicitar um novo agendamento. Confirmaremos sua reserva em breve.
           </CardDescription>
         </CardHeader>
         <CardContent>

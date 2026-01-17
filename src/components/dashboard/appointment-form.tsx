@@ -27,18 +27,19 @@ import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { CalendarIcon } from 'lucide-react';
 import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import { services } from '@/lib/mock-data';
 import { useToast } from '@/hooks/use-toast';
 
 const appointmentFormSchema = z.object({
   service: z.string({
-    required_error: 'Please select a service.',
+    required_error: 'Por favor, selecione um serviço.',
   }),
   date: z.date({
-    required_error: 'A date is required.',
+    required_error: 'Uma data é obrigatória.',
   }),
   time: z.string({
-    required_error: 'Please select a preferred time.',
+    required_error: 'Por favor, selecione um horário de preferência.',
   }),
   details: z.string().optional(),
 });
@@ -57,8 +58,8 @@ export default function AppointmentForm() {
   function onSubmit(data: AppointmentFormValues) {
     console.log(data);
     toast({
-      title: 'Request Sent!',
-      description: 'Your appointment request has been sent successfully. We will notify you upon confirmation.',
+      title: 'Solicitação Enviada!',
+      description: 'Sua solicitação de agendamento foi enviada com sucesso. Nós o notificaremos após a confirmação.',
     });
     form.reset();
   }
@@ -72,12 +73,12 @@ export default function AppointmentForm() {
             name="service"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Service</FormLabel>
+                <FormLabel>Serviço</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                     <SelectTrigger>
-                        <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
+                        <SelectValue placeholder="Selecione um serviço" />
+                    </Trigger>
                     </FormControl>
                     <SelectContent>
                     {services.map((service) => (
@@ -97,7 +98,7 @@ export default function AppointmentForm() {
                 name="date"
                 render={({ field }) => (
                     <FormItem className="flex flex-col">
-                    <FormLabel>Preferred Date</FormLabel>
+                    <FormLabel>Data Preferida</FormLabel>
                     <Popover>
                         <PopoverTrigger asChild>
                         <FormControl>
@@ -109,9 +110,9 @@ export default function AppointmentForm() {
                             )}
                             >
                             {field.value ? (
-                                format(field.value, 'PPP')
+                                format(field.value, 'PPP', { locale: ptBR })
                             ) : (
-                                <span>Pick a date</span>
+                                <span>Escolha uma data</span>
                             )}
                             <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                             </Button>
@@ -124,6 +125,7 @@ export default function AppointmentForm() {
                             onSelect={field.onChange}
                             disabled={(date) => date < new Date() || date < new Date('1900-01-01')}
                             initialFocus
+                            locale={ptBR}
                         />
                         </PopoverContent>
                     </Popover>
@@ -136,17 +138,17 @@ export default function AppointmentForm() {
                     name="time"
                     render={({ field }) => (
                         <FormItem className="flex flex-col">
-                        <FormLabel>Preferred Time</FormLabel>
+                        <FormLabel>Horário Preferido</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
-                                <SelectValue placeholder="Select time" />
+                                <SelectValue placeholder="Selecione o horário" />
                             </Trigger>
                             </FormControl>
                             <SelectContent>
-                                <SelectItem value="morning">Morning (9am - 12pm)</SelectItem>
-                                <SelectItem value="afternoon">Afternoon (12pm - 4pm)</SelectItem>
-                                <SelectItem value="evening">Evening (4pm - 7pm)</SelectItem>
+                                <SelectItem value="morning">Manhã (9h - 12h)</SelectItem>
+                                <SelectItem value="afternoon">Tarde (12h - 16h)</SelectItem>
+                                <SelectItem value="evening">Noite (16h - 19h)</SelectItem>
                             </SelectContent>
                         </Select>
                         <FormMessage />
@@ -160,22 +162,22 @@ export default function AppointmentForm() {
           name="details"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Additional Details</FormLabel>
+              <FormLabel>Detalhes Adicionais</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Any specific requests or information? (e.g., hair type, style preference)"
+                  placeholder="Alguma solicitação ou informação específica? (ex: tipo de cabelo, preferência de estilo)"
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                Provide any extra details that might help your stylist.
+                Forneça detalhes extras que possam ajudar seu estilista.
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Send Request</Button>
+        <Button type="submit">Enviar Solicitação</Button>
       </form>
     </Form>
   );

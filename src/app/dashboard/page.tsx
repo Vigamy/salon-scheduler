@@ -7,6 +7,7 @@ import { appointments as mockAppointments } from '@/lib/mock-data';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { format, isSameDay } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 import Link from 'next/link';
 import { PlusCircle } from 'lucide-react';
 
@@ -21,19 +22,19 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold font-headline tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl font-bold font-headline tracking-tight">Painel</h1>
         <Button asChild>
           <Link href="/dashboard/new-request">
             <PlusCircle className="mr-2 h-4 w-4" />
-            New Appointment
+            Novo Agendamento
           </Link>
         </Button>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Your Schedule</CardTitle>
-            <CardDescription>View and manage your upcoming appointments.</CardDescription>
+            <CardTitle>Sua Agenda</CardTitle>
+            <CardDescription>Visualize e gerencie seus próximos agendamentos.</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4 md:grid-cols-2">
             <div>
@@ -42,6 +43,7 @@ export default function DashboardPage() {
                 selected={date}
                 onSelect={setDate}
                 className="rounded-md border"
+                locale={ptBR}
                 modifiers={{
                   hasAppointment: mockAppointments.map(apt => apt.date)
                 }}
@@ -55,7 +57,7 @@ export default function DashboardPage() {
             </div>
             <div className="space-y-4">
               <h3 className="font-semibold">
-                Appointments for {date ? format(date, 'PPP') : '...'}
+                Agendamentos para {date ? format(date, 'PPP', { locale: ptBR }) : '...'}
               </h3>
               {selectedDayAppointments.length > 0 ? (
                 <ul className="space-y-3">
@@ -67,7 +69,7 @@ export default function DashboardPage() {
                       </div>
                       <div className='text-right'>
                         <p className='font-mono text-sm'>{apt.time}</p>
-                        <Badge variant={apt.status === 'Approved' ? 'default' : 'secondary'}>
+                        <Badge variant={apt.status === 'Aprovado' ? 'default' : 'secondary'}>
                           {apt.status}
                         </Badge>
                       </div>
@@ -76,7 +78,7 @@ export default function DashboardPage() {
                 </ul>
               ) : (
                 <div className="flex flex-col items-center justify-center text-center p-4 border-dashed border rounded-lg h-full">
-                  <p className="text-sm text-muted-foreground">No appointments scheduled for this day.</p>
+                  <p className="text-sm text-muted-foreground">Nenhum agendamento para este dia.</p>
                 </div>
               )}
             </div>
@@ -84,21 +86,21 @@ export default function DashboardPage() {
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Quick Stats</CardTitle>
+            <CardTitle>Estatísticas Rápidas</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Today's Appointments</span>
+              <span className="text-muted-foreground">Agendamentos de Hoje</span>
               <span className="font-bold text-2xl">{selectedDayAppointments.length}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Upcoming this week</span>
+              <span className="text-muted-foreground">Próximos na semana</span>
               <span className="font-bold text-2xl">
                 {mockAppointments.filter(a => a.date > new Date() && a.date < new Date(new Date().setDate(new Date().getDate() + 7))).length}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-muted-foreground">Pending Requests</span>
+              <span className="text-muted-foreground">Solicitações Pendentes</span>
               <span className="font-bold text-2xl text-primary">2</span>
             </div>
           </CardContent>

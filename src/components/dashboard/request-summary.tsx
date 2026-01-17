@@ -27,7 +27,7 @@ export default function RequestSummary({ request }: RequestSummaryProps) {
         preferredTime: request.preferredTime,
         additionalDetails: request.additionalDetails,
       });
-      if (result.startsWith('Failed')) {
+      if (result.startsWith('Falha')) {
         setError(result);
       } else {
         setSummary(result);
@@ -38,9 +38,9 @@ export default function RequestSummary({ request }: RequestSummaryProps) {
   return (
     <div className="space-y-4 rounded-lg bg-muted/50 p-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold">AI Assistant</h3>
+        <h3 className="font-semibold">Assistente de IA</h3>
         <Button size="sm" onClick={handleClick} disabled={isPending}>
-          ✨ Generate Summary
+          ✨ Gerar Resumo
         </Button>
       </div>
 
@@ -55,7 +55,7 @@ export default function RequestSummary({ request }: RequestSummaryProps) {
       {error && (
         <Alert variant="destructive">
           <Terminal className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
+          <AlertTitle>Erro</AlertTitle>
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
@@ -63,14 +63,14 @@ export default function RequestSummary({ request }: RequestSummaryProps) {
       {summary && (
         <Alert>
           <Terminal className="h-4 w-4" />
-          <AlertTitle>Appointment Summary</AlertTitle>
+          <AlertTitle>Resumo do Agendamento</AlertTitle>
           <AlertDescription>{summary}</AlertDescription>
         </Alert>
       )}
 
       {!isPending && !summary && !error && (
         <div className="text-center text-sm text-muted-foreground py-4">
-          Click the button to generate a quick summary of the client's request.
+          Clique no botão para gerar um resumo rápido da solicitação do cliente.
         </div>
       )}
     </div>

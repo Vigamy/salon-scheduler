@@ -11,24 +11,24 @@ export default function ProfilePage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-bold font-headline tracking-tight">Profile</h1>
+      <h1 className="text-2xl font-bold font-headline tracking-tight">Perfil</h1>
       <Card>
         <CardHeader>
-          <CardTitle>Your Information</CardTitle>
-          <CardDescription>Manage your account settings and personal details.</CardDescription>
+          <CardTitle>Suas Informações</CardTitle>
+          <CardDescription>Gerencie as configurações da sua conta e detalhes pessoais.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center gap-4">
             <Avatar className="h-20 w-20 border">
-              {avatar && <AvatarImage src={avatar.imageUrl} alt="User" data-ai-hint={avatar.imageHint} />}
+              {avatar && <AvatarImage src={avatar.imageUrl} alt="Usuário" data-ai-hint={avatar.imageHint} />}
               <AvatarFallback className="text-2xl">S</AvatarFallback>
             </Avatar>
-            <Button variant="outline">Change Photo</Button>
+            <Button variant="outline">Alterar Foto</Button>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input id="name" defaultValue="Default Stylist" />
+              <Label htmlFor="name">Nome Completo</Label>
+              <Input id="name" defaultValue="Estilista Padrão" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
@@ -37,11 +37,11 @@ export default function ProfilePage() {
           </div>
           <div className="flex justify-between items-center pt-4 border-t">
               <div>
-                <h3 className="font-medium">Log Out</h3>
-                <p className="text-sm text-muted-foreground">You will be returned to the login screen.</p>
+                <h3 className="font-medium">Sair</h3>
+                <p className="text-sm text-muted-foreground">Você será redirecionado para a tela de login.</p>
               </div>
             <Button variant="destructive" asChild>
-              <Link href="/login">Log Out</Link>
+              <Link href="/login">Sair</Link>
             </Button>
           </div>
         </CardContent>

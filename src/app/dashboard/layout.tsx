@@ -41,7 +41,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Logo className="size-7 text-primary" />
-            <span className="text-lg font-semibold font-headline">Salon</span>
+            <span className="text-lg font-semibold font-headline">Salão</span>
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -50,11 +50,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               <SidebarMenuButton
                 asChild
                 isActive={pathname === '/dashboard'}
-                tooltip="Dashboard"
+                tooltip="Painel"
               >
                 <Link href="/dashboard">
                   <LayoutGrid />
-                  <span>Dashboard</span>
+                  <span>Painel</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -62,11 +62,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               <SidebarMenuButton
                 asChild
                 isActive={pathname === '/dashboard/requests'}
-                tooltip="Requests"
+                tooltip="Solicitações"
               >
                 <Link href="/dashboard/requests">
                   <Bell />
-                  <span>Requests</span>
+                  <span>Solicitações</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -74,11 +74,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               <SidebarMenuButton
                 asChild
                 isActive={pathname === '/dashboard/availability'}
-                tooltip="Availability"
+                tooltip="Disponibilidade"
               >
                 <Link href="/dashboard/availability">
                   <Calendar />
-                  <span>Availability</span>
+                  <span>Disponibilidade</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -86,11 +86,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               <SidebarMenuButton
                 asChild
                 isActive={pathname === '/dashboard/profile'}
-                tooltip="Profile"
+                tooltip="Perfil"
               >
                 <Link href="/dashboard/profile">
                   <User />
-                  <span>Profile</span>
+                  <span>Perfil</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -99,11 +99,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <SidebarFooter>
           <div className="flex items-center gap-3">
             <Avatar className="size-8">
-              {avatar && <AvatarImage src={avatar.imageUrl} alt="User" data-ai-hint={avatar.imageHint} />}
+              {avatar && <AvatarImage src={avatar.imageUrl} alt="Usuário" data-ai-hint={avatar.imageHint} />}
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-sm font-medium">Stylist</span>
+              <span className="text-sm font-medium">Estilista</span>
               <span className="text-xs text-muted-foreground">stylist@salon.com</span>
             </div>
           </div>
@@ -113,11 +113,11 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         <header className="flex h-14 items-center justify-between border-b bg-background px-4 lg:px-6">
           <SidebarTrigger className="md:hidden"/>
           <div className="flex-1 text-center md:text-left">
-             {/* Can add breadcrumbs or page title here */}
+             {/* Pode adicionar breadcrumbs ou título da página aqui */}
           </div>
           <Button variant="ghost" size="icon" className="rounded-full">
             <Settings className="h-5 w-5" />
-            <span className="sr-only">Settings</span>
+            <span className="sr-only">Configurações</span>
           </Button>
         </header>
         <main className="flex-1 p-4 sm:px-6 sm:py-6">{children}</main>

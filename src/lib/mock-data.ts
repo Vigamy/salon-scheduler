@@ -1,35 +1,35 @@
 export const services = [
-  { id: 'haircut', name: 'Haircut' },
-  { id: 'coloring', name: 'Coloring' },
-  { id: 'styling', name: 'Styling' },
-  { id: 'treatment', name: 'Hair Treatment' },
-  { id: 'extensions', name: 'Extensions' },
+  { id: 'haircut', name: 'Corte de Cabelo' },
+  { id: 'coloring', name: 'Coloração' },
+  { id: 'styling', name: 'Penteado' },
+  { id: 'treatment', name: 'Tratamento Capilar' },
+  { id: 'extensions', name: 'Extensões' },
 ];
 
 export const appointments = [
   {
     id: 'apt1',
     date: new Date(new Date().setDate(new Date().getDate() + 1)),
-    time: '10:00 AM',
+    time: '10:00',
     clientName: 'Jane Doe',
-    service: 'Haircut',
-    status: 'Approved',
+    service: 'Corte de Cabelo',
+    status: 'Aprovado',
   },
   {
     id: 'apt2',
     date: new Date(new Date().setDate(new Date().getDate() + 1)),
-    time: '02:00 PM',
+    time: '14:00',
     clientName: 'John Smith',
-    service: 'Coloring',
-    status: 'Approved',
+    service: 'Coloração',
+    status: 'Aprovado',
   },
   {
     id: 'apt3',
     date: new Date(new Date().setDate(new Date().getDate() + 3)),
-    time: '11:00 AM',
+    time: '11:00',
     clientName: 'Emily White',
-    service: 'Styling',
-    status: 'Approved',
+    service: 'Penteado',
+    status: 'Aprovado',
   },
 ];
 
@@ -39,20 +39,20 @@ export const appointmentRequests = [
     clientName: 'Michael Brown',
     avatarUrl: 'https://picsum.photos/seed/101/100/100',
     dataAiHint: 'man portrait',
-    service: 'Haircut',
-    preferredTime: 'Tomorrow afternoon, around 3 PM if possible.',
+    service: 'Corte de Cabelo',
+    preferredTime: 'Amanhã à tarde, por volta das 15h se possível.',
     additionalDetails:
-      "I'm looking for a complete restyle, something modern and easy to maintain. I have medium-length wavy hair. Let me know what you think is best!",
+      "Estou procurando um novo estilo completo, algo moderno e fácil de manter. Tenho cabelo ondulado de comprimento médio. Diga-me o que você acha que é melhor!",
   },
   {
     id: 'req2',
     clientName: 'Sarah Johnson',
     avatarUrl: 'https://picsum.photos/seed/102/100/100',
     dataAiHint: 'woman smiling',
-    service: 'Coloring',
-    preferredTime: 'Next Friday morning.',
+    service: 'Coloração',
+    preferredTime: 'Próxima sexta-feira de manhã.',
     additionalDetails:
-      'I want to go blonde. My current hair color is dark brown. I know this is a big change, so I want to discuss options and pricing. I am available for a consultation first if needed.',
+      'Eu quero ficar loira. A cor atual do meu cabelo é castanho escuro. Sei que é uma grande mudança, então quero discutir opções e preços. Estou disponível para uma consulta primeiro, se necessário.',
   },
 ];
 
