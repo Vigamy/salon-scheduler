@@ -100,3 +100,19 @@ Abra `http://localhost:3000/login`.
 3. Sem variáveis críticas por enquanto (modo mock).
 
 Quando entrar na Fase 2, adicionar `DATABASE_URL`, `AUTH_SECRET` e chaves do provedor escolhido.
+
+## Deploy automático QA (Vercel + GitHub Actions)
+
+Foi adicionado o workflow `.github/workflows/vercel-qa.yml` para deploy de preview no Vercel.
+
+### Como configurar
+
+No repositório do GitHub, adicione estes secrets:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+Depois disso, faça push na branch `work` (ou execute manualmente via `workflow_dispatch`) para gerar deploy de QA.
+
+> Observação: o workflow faz `npm run build` antes de publicar, para evitar subir build quebrado.
