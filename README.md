@@ -1,37 +1,118 @@
-# Agendador de Salão
+# Agendador de Salão (Rascunho de Evolução)
 
-Esta é uma aplicação Next.js para gerenciar agendamentos de salão. Ela permite que estilistas gerenciem sua disponibilidade, lidem com solicitações de agendamento e visualizem sua agenda.
+Este repositório agora está organizado como **protótipo evolutivo** para construir, com calma, um sistema completo para salão/cabeleireiro.
 
-## Como Usar a Aplicação
+## Objetivo do produto
 
-A aplicação foi projetada da perspectiva de um estilista ou proprietário de salão. Aqui está um passo a passo das principais funcionalidades:
+Criar um sistema simples para duas personas:
 
-### 1. Autenticação
-- **Login**: A página de login é atualmente um espaço reservado para fins de demonstração. Você não precisa inserir um e-mail ou senha. Basta clicar no botão "Ver Painel" para acessar a aplicação.
+1. **Profissional (cabeleireiro):**
+   - Ver agenda do dia/semana (feature principal).
+   - Agendar para clientes cadastrados e não cadastrados.
+   - Reagendar com poucos cliques (uso diário).
+   - Acompanhar recebimentos e pendências financeiras.
 
-### 2. Painel
-- **Visão Geral**: Após o login, você chegará ao [painel](/dashboard) principal.
-- **Calendário**: Mostra seus agendamentos. Os dias com agendamentos são destacados. Clique em uma data para ver os agendamentos daquele dia.
-- **Estatísticas Rápidas**: Veja um resumo dos agendamentos de hoje, agendamentos futuros para a semana e o número de solicitações pendentes.
-- **Novo Agendamento**: Você pode criar um novo agendamento diretamente do painel clicando no botão "Novo Agendamento".
+2. **Cliente:**
+   - Solicitar agendamento.
+   - Pedir remarcação.
+   - Cancelar quando necessário.
 
-### 3. Gerenciar Disponibilidade
-- Navegue para a página de [Disponibilidade](/dashboard/availability) na barra lateral.
-- Aqui, você pode definir seu horário de trabalho para cada dia da semana.
-- Use os interruptores para ativar ou desativar um dia e defina os horários de início e fim para seus horários disponíveis.
-- Clique em "Salvar Alterações" para atualizar sua agenda.
+Também está previsto um **chat interno** para reduzir dependência de WhatsApp.
 
-### 4. Lidar com Solicitações de Agendamento
-- Vá para a página de [Solicitações](/dashboard/requests) para ver todas as solicitações de agendamento pendentes de clientes.
-- Cada cartão de solicitação mostra o nome do cliente, o serviço solicitado, o horário preferido e quaisquer detalhes adicionais que eles forneceram.
-- **Resumo por IA**: Você pode clicar em "✨ Gerar Resumo" para obter um resumo conciso, gerado por IA, da solicitação do cliente, o que pode ajudá-lo a tomar uma decisão mais rápida.
-- **Aprovar/Recusar**: Use os botões "Aprovar" e "Recusar" para gerenciar a solicitação.
+## O que já foi ajustado nesta fase
 
-### 5. Criar uma Nova Solicitação de Agendamento
-- Você pode criar um agendamento manualmente navegando para a página [Nova Solicitação](/dashboard/new-request).
-- Preencha o formulário com o serviço, data e hora preferidas e quaisquer outros detalhes.
-- Clique em "Enviar Solicitação" para adicioná-lo ao sistema.
+- Tela de entrada com escolha de perfil (profissional/cliente).
+- Dashboard do profissional com foco em:
+  - agenda + status;
+  - bloco de remarcações;
+  - resumo financeiro;
+  - prévia de chat interno.
+- Nova tela inicial da visão do cliente com ações de solicitar horário, remarcar e cancelar.
 
-### 6. Gerenciar Seu Perfil
-- A página de [Perfil](/dashboard/profile) permite que você visualize e atualize suas informações pessoais, como seu nome e foto de perfil.
-- Você também pode sair desta página.
+> Tudo ainda em modo demo com dados mockados para validar fluxo de UX antes de backend definitivo.
+
+## Sugestão de backend (recomendação prática)
+
+Para velocidade no QA e simplicidade operacional:
+
+### Opção recomendada (MVP rápido)
+- **Next.js (App Router) + API Routes/Server Actions**
+- **PostgreSQL (Neon/Supabase/Railway)**
+- **Prisma ORM**
+- **Auth.js (ou Clerk)**
+- **Redis (Upstash) opcional** para filas/notificações
+
+Vantagens:
+- Deploy simples no Vercel.
+- Stack única em TypeScript.
+- Fácil escalar para produção sem reescrever tudo.
+
+### Opção 2 (se quiser separar cedo)
+- Frontend: Next.js
+- Backend: NestJS (REST/GraphQL)
+- Banco: PostgreSQL
+- Fila: BullMQ/Redis
+
+Vantagens:
+- Domínio mais organizado para regras complexas (agenda + financeiro + chat).
+- Melhor para times maiores.
+
+## Roadmap sugerido (passo a passo)
+
+### Fase 1 — UX e regras de agenda (atual)
+- Fluxos principais navegáveis.
+- Definição das regras de remarcação e cancelamento.
+- Estrutura inicial de dados.
+
+### Fase 2 — Persistência real + autenticação
+- Tabelas reais (usuários, agendamentos, pagamentos, mensagens).
+- Login por perfil (profissional/cliente).
+- CRUD real de agendamentos.
+
+### Fase 3 — Operação diária
+- Remarcação em massa (drag/drop ou ações rápidas).
+- Histórico de alterações de horário.
+- Registro financeiro por atendimento.
+
+### Fase 4 — Chat interno
+- Conversa cliente-profissional por agendamento.
+- Templates rápidos de mensagem.
+- Notificações no sistema (e e-mail opcional).
+
+### Fase 5 — Produção
+- Observabilidade (logs, métricas, erros).
+- Backup e rotinas administrativas.
+- Segurança e conformidade LGPD.
+
+## Executar localmente
+
+```bash
+npm install
+npm run dev
+```
+
+Abra `http://localhost:3000/login`.
+
+## Deploy QA na Vercel
+
+1. Conectar repositório.
+2. Build command padrão (`npm run build`).
+3. Sem variáveis críticas por enquanto (modo mock).
+
+Quando entrar na Fase 2, adicionar `DATABASE_URL`, `AUTH_SECRET` e chaves do provedor escolhido.
+
+## Deploy automático QA (Vercel + GitHub Actions)
+
+Foi adicionado o workflow `.github/workflows/vercel-qa.yml` para deploy de preview no Vercel.
+
+### Como configurar
+
+No repositório do GitHub, adicione estes secrets:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+Depois disso, faça push na branch `work` (ou execute manualmente via `workflow_dispatch`) para gerar deploy de QA.
+
+> Observação: o workflow faz `npm run build` antes de publicar, para evitar subir build quebrado.
