@@ -78,7 +78,7 @@ export default function AppointmentForm() {
                     <FormControl>
                     <SelectTrigger>
                         <SelectValue placeholder="Selecione um serviço" />
-                    </Trigger>
+                    </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                     {services.map((service) => (
@@ -143,7 +143,7 @@ export default function AppointmentForm() {
                             <FormControl>
                             <SelectTrigger>
                                 <SelectValue placeholder="Selecione o horário" />
-                            </Trigger>
+                            </SelectTrigger>
                             </FormControl>
                             <SelectContent>
                                 <SelectItem value="morning">Manhã (9h - 12h)</SelectItem>
