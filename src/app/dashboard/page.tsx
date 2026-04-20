@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { format, isSameDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import Link from 'next/link';
-import { CalendarClock, MessageCircleMore, PlusCircle, Wallet } from 'lucide-react';
+import { CalendarClock, MessageCircleMore, PlusCircle, Wallet, CircleCheckBig, BellRing } from 'lucide-react';
 
 export default function DashboardPage() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -44,6 +44,24 @@ export default function DashboardPage() {
             <PlusCircle className="mr-2 h-4 w-4" />
             Agendar encaixe manual
           </Link>
+        </Button>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Card className="border-primary/30 bg-primary/5">
+          <CardContent className="flex items-center gap-3 p-4 text-sm">
+            <CircleCheckBig className="h-4 w-4 text-primary" />
+            <span>Ações rápidas com foco no dia de hoje.</span>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="flex items-center gap-3 p-4 text-sm">
+            <BellRing className="h-4 w-4 text-primary" />
+            <span>{rescheduleRequests.length} remarcações para revisar.</span>
+          </CardContent>
+        </Card>
+        <Button size="lg" variant="outline" className="h-full" asChild>
+          <Link href="/dashboard/requests">Abrir solicitações pendentes</Link>
         </Button>
       </div>
 

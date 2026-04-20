@@ -13,7 +13,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -59,21 +58,21 @@ export default function AppointmentForm() {
     console.log(data);
     toast({
       title: 'Solicitação Enviada!',
-      description: 'Sua solicitação de agendamento foi enviada com sucesso. Nós o notificaremos após a confirmação.',
+      description: 'Seu pedido foi enviado! Vamos confirmar e avisar você automaticamente.',
     });
     form.reset();
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid md:grid-cols-2 gap-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid gap-6 md:grid-cols-2">
             <FormField
             control={form.control}
             name="service"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Serviço</FormLabel>
+                <FormLabel>1) Escolha o serviço</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                     <SelectTrigger>
@@ -92,13 +91,13 @@ export default function AppointmentForm() {
                 </FormItem>
             )}
             />
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid gap-4 md:grid-cols-2">
                 <FormField
                 control={form.control}
                 name="date"
                 render={({ field }) => (
                     <FormItem className="flex flex-col">
-                    <FormLabel>Data Preferida</FormLabel>
+                    <FormLabel>2) Escolha a data</FormLabel>
                     <Popover>
                         <PopoverTrigger asChild>
                         <FormControl>
@@ -138,7 +137,7 @@ export default function AppointmentForm() {
                     name="time"
                     render={({ field }) => (
                         <FormItem className="flex flex-col">
-                        <FormLabel>Horário Preferido</FormLabel>
+                        <FormLabel>3) Melhor período</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                             <SelectTrigger>
@@ -162,7 +161,7 @@ export default function AppointmentForm() {
           name="details"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Detalhes Adicionais</FormLabel>
+              <FormLabel>4) Observações (opcional)</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Alguma solicitação ou informação específica? (ex: tipo de cabelo, preferência de estilo)"
@@ -177,7 +176,7 @@ export default function AppointmentForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Enviar Solicitação</Button>
+        <Button type="submit" size="lg">Enviar pedido de agendamento</Button>
       </form>
     </Form>
   );

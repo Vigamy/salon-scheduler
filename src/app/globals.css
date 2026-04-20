@@ -56,3 +56,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+@layer components {
+  .app-surface {
+    @apply rounded-2xl border bg-card shadow-sm;
+  }
+}
+
+@layer base {
+  button,
+  [role='button'] {
+    @apply transition-all duration-200;
+  }
+}
