@@ -110,7 +110,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="flex h-14 items-center justify-between border-b bg-background px-4 lg:px-6">
+        <header className="flex h-14 items-center justify-between border-b bg-background px-4 md:px-6 lg:px-8">
           <SidebarTrigger className="md:hidden"/>
           <div className="flex-1 text-center md:text-left">
              {/* Pode adicionar breadcrumbs ou título da página aqui */}
@@ -120,7 +120,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             <span className="sr-only">Configurações</span>
           </Button>
         </header>
-        <main className="flex-1 p-4 sm:px-6 sm:py-6">{children}</main>
+        <main className="flex-1 px-4 py-4 md:px-6 md:py-6 lg:px-8">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
