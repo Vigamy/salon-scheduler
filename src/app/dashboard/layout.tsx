@@ -24,7 +24,6 @@ import { Logo } from '@/components/icons';
 import {
   Calendar,
   LayoutGrid,
-  Scissors,
   Settings,
   Bell,
   User,
@@ -37,11 +36,14 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar className="border-r border-sidebar-border/70 bg-sidebar/95 backdrop-blur supports-[backdrop-filter]:bg-sidebar/90">
         <SidebarHeader>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 rounded-xl border border-sidebar-border/60 bg-sidebar-accent/60 p-3">
             <Logo className="size-7 text-primary" />
-            <span className="text-lg font-semibold font-headline">Salão</span>
+            <div className="leading-tight">
+              <p className="text-sm text-sidebar-foreground/70">Studio</p>
+              <span className="text-lg font-semibold font-headline">Salão</span>
+            </div>
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -97,7 +99,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 rounded-xl border border-sidebar-border/60 bg-sidebar-accent/50 p-3">
             <Avatar className="size-8">
               {avatar && <AvatarImage src={avatar.imageUrl} alt="Usuário" data-ai-hint={avatar.imageHint} />}
               <AvatarFallback>U</AvatarFallback>
@@ -110,17 +112,17 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
-        <header className="flex h-14 items-center justify-between border-b bg-background px-4 md:px-6 lg:px-8">
+        <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border/70 bg-background/85 px-4 backdrop-blur md:px-6 lg:px-8">
           <SidebarTrigger className="md:hidden"/>
           <div className="flex-1 text-center md:text-left">
-             {/* Pode adicionar breadcrumbs ou título da página aqui */}
+             <p className="text-sm text-muted-foreground">Gestão do seu salão</p>
           </div>
           <Button variant="ghost" size="icon" className="rounded-full">
             <Settings className="h-5 w-5" />
             <span className="sr-only">Configurações</span>
           </Button>
         </header>
-        <main className="flex-1 px-4 py-4 md:px-6 md:py-6 lg:px-8">{children}</main>
+        <main className="flex-1 px-4 py-5 md:px-6 md:py-7 lg:px-8">{children}</main>
       </SidebarInset>
     </SidebarProvider>
   );
